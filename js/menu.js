@@ -1,42 +1,47 @@
-var drinkimg = ["./images/Menu/KT1.jpg","./images/Menu/coffee.jpg", "./images/Menu/smoothie.jpg"];
-var currentIndex = 0
+//Slider functions
+const productContainers = [...document.querySelectorAll('.product-container')];
+const Btnnext = [...document.querySelectorAll('.next')];
+const Btnprev = [...document.querySelectorAll('.prev')];
 
-function changeDrink() {
-    currentIndex++;
-    
-    if (currentIndex >= drinkimg.length) {
-        currentIndex = 0;
+productContainers.forEach((item, i) => {
+    let containerBox = item.getBoundingClientRect();
+    let containerWidth = containerBox.width;
+
+    Btnnext[i].addEventListener("click",() => {
+        item.scrollLeft += containerWidth;
+    });
+
+    Btnprev[i].addEventListener("click",() => {
+        item.scrollLeft -= containerWidth;
+    });
+});
+
+
+//Order functions
+
+function openOrder(itemName, price) {
+    console.log("Button clicked");
+    document.getElementById("itemName").innerHTML = itemName;
+    document.getElementById("cartForm").style.display = "block";
+    document.getElementById("sumbitButton").onclick = function() {
+        submitOrder(itemNamem, price);
+    };
+}
+
+function closeCart() {
+    document.getElementById("cartForm").style.display = "none";
+}
+
+function sumbitOrder(itemName, price) {
+    var quantity = parseInt(document.getElementById('quantity').value);
+
+    if (quantity > 0 && quantity <= 10) {
+        var totalPrice = quantity * parseFloat(price);
+        alert('Order submitted successfully!\nItem' + itemName + "\Quantity:" + quantity + "\nTotal Price: $" + totalPrice.toFixed(2));
+        closeCart();
+    } else {
+        alert("Please enter a valid quantity (1-10). Thank you!");
     }
-    var imgDrink =  document.getElementById('img1');
+}
 
-    imgDrink.src = drinkimg[currentIndex];
-    }
-
-var foodimg = ["./images/Menu/chicken.jpg","./images/Menu/panda.jpg", "./images/Menu/chipotle.jpg"];
-var currentIndex = 0
-
-function changeFood() {
-    currentIndex++;
-
-    if (currentIndex >= foodimg.length) {
-        currentIndex = 0;
-    }
-    var imgFood =  document.getElementById('img2');
-
-    imgFood.src = foodimg[currentIndex];
-    }
-
-
-var dessertimg = ["./images/Menu/bakery.jpg","./images/Menu/yogurt.jpg", "./images/Menu/donut.jpg"];
-var currentIndex = 0
-
-function changeDessert() {
-    currentIndex++;
-
-    if (currentIndex >= dessertimg.length) {
-        currentIndex = 0;
-    }
-    var imgDessert =  document.getElementById('img3');
-
-    imgDessert.src = dessertimg[currentIndex];
-    }
+document.getElementById("closeCart").addEventListener("click", closeCart);
