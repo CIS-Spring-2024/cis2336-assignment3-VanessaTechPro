@@ -1,22 +1,3 @@
-//Slider functions
-const productContainers = [...document.querySelectorAll('.product-container')];
-const Btnnext = [...document.querySelectorAll('.next')];
-const Btnprev = [...document.querySelectorAll('.prev')];
-
-productContainers.forEach((item, i) => {
-    let containerBox = item.getBoundingClientRect();
-    let containerWidth = containerBox.width;
-
-    Btnnext[i].addEventListener("click",() => {
-        item.scrollLeft += containerWidth;
-    });
-
-    Btnprev[i].addEventListener("click",() => {
-        item.scrollLeft -= containerWidth;
-    });
-});
-
-
 //Order functions
 
 function openOrder(itemName, price) {
