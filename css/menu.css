@@ -62,7 +62,50 @@
     align-items: center;
 }
 
+/* next and prev button */
+.prev,
+.next {
+    border: none;
+    width: 10vw;
+    height: 130%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    cursor: pointer;
+    z-index: 9;
+}
 
+.prev {
+    left: 150px;
+}
+
+.next {
+    right: 150px;
+    transform: rotate(180deg);
+}
+
+
+.prev img,
+.next img {
+    opacity: 0.3;
+    width: 30px;
+    height: 30px;
+}
+
+
+.prev:hover img {
+    opacity: 5;
+}
+
+.next:hover img  {
+    opacity: 5;
+}
+
+
+/* Order Button */
 .card-btn {
     position: absolute;
     bottom: 10px;
